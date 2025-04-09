@@ -1,0 +1,15 @@
+{
+    "clangd.arguments": [
+        //补全函数时，将会给参数提供占位符
+        "--function-arg-placeholders=false",
+        // 允许补充头文件
+        "--header-insertion=never",
+        // 在后台自动分析文件(基于 complie_commands，我们用CMake生成)
+        "--background-index",
+        // 同时开启的任务数量
+        "-j=12",
+        // compelie_commands.json 文件的目录位置(相对于工作区，由于 CMake 生成的该文件默认在 build 文件夹中，故设置为 build)
+         "--compile-commands-dir=./build/"
+    ],
+    "Codegeex.RepoIndex": true,
+}
