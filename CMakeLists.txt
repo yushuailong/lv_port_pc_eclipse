@@ -29,6 +29,15 @@ target_compile_definitions(main PRIVATE LV_CONF_INCLUDE_SIMPLE)
 target_link_libraries(main lvgl lvgl::examples lvgl::demos lvgl::thorvg ${SDL2_LIBRARIES} m pthread)
 add_custom_target (run COMMAND ${EXECUTABLE_OUTPUT_PATH}/main DEPENDS main)
 
+# 添加FreeType子目录
+add_subdirectory(freetype)
+
+# 包含FreeType头文件
+target_include_directories(lvgl PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/freetype/include)
+
+# 链接FreeType库
+target_link_libraries(main freetype)
+
 if(LV_USE_DRAW_SDL)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
     # Need to install libsdl2-image-dev
